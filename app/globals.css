@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+
+  --color-sage-50: #f2f6f1;
+  --color-sage-100: #e1ebdf;
+  --color-sage-200: #c3d7c0;
+  --color-sage-300: #9bbd97;
+  --color-sage-400: #719c6e;
+  --color-sage-500: #527f52;
+  --color-sage-600: #3f6b4f;
+  --color-sage-700: #335641;
+  --color-sage-800: #263f31;
+  --color-sage-900: #18291f;
+  --color-sage-950: #0d1712;
+
+  --color-sand-50: #faf8f3;
+  --color-sand-100: #f4f1ea;
+  --color-sand-200: #e6e0d4;
+  --color-sand-300: #d4cab6;
+  --color-sand-400: #b8a98c;
+  --color-sand-500: #a08d6c;
+
+  --color-clay-300: #e3ab90;
+  --color-clay-400: #d48e6e;
+  --color-clay-500: #c47a5a;
+  --color-clay-600: #a5603f;
+
+  --animate-float: float 9s ease-in-out infinite;
+  --animate-fade-up: fade-up 0.7s ease-out both;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-18px) scale(1.04); }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@layer base {
+  :root { color-scheme: light; }
+  .dark { color-scheme: dark; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply bg-sand-50 text-sage-950 antialiased dark:bg-sage-950 dark:text-sand-100;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  ::selection { @apply bg-sage-200 text-sage-900; }
+
+  :focus-visible { @apply outline-2 outline-offset-2 outline-sage-500; }
+}
+
+@utility glass {
+  @apply border border-white/50 bg-white/55 shadow-[0_8px_32px_-12px_rgba(38,63,49,0.18)] backdrop-blur-xl
+    dark:border-white/10 dark:bg-white/[0.04] dark:shadow-[0_8px_32px_-12px_rgba(0,0,0,0.6)];
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold
+    transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-60 active:scale-[0.98];
+}
+@utility btn-primary {
+  @apply btn bg-sage-600 text-white shadow-lg shadow-sage-600/25 hover:bg-sage-700 dark:bg-sage-500 dark:hover:bg-sage-400 dark:text-sage-950;
+}
+@utility btn-secondary {
+  @apply btn border border-sage-600/30 bg-white/60 text-sage-800 hover:bg-white dark:border-white/15 dark:bg-white/5 dark:text-sand-100 dark:hover:bg-white/10;
+}
+@utility btn-ghost {
+  @apply btn text-sage-700 hover:bg-sage-100 dark:text-sand-200 dark:hover:bg-white/10;
+}
+@utility btn-clay {
+  @apply btn bg-clay-500 text-white shadow-lg shadow-clay-500/25 hover:bg-clay-600;
+}
+
+@utility input {
+  @apply w-full rounded-xl border border-sand-200 bg-white/80 px-4 py-3 text-sm text-sage-950 placeholder:text-sand-400
+    transition focus:border-sage-500 focus:ring-4 focus:ring-sage-500/15 focus:outline-none
+    dark:border-white/10 dark:bg-white/5 dark:text-sand-50 dark:placeholder:text-sand-500;
+}
+@utility label {
+  @apply mb-1.5 block text-sm font-medium text-sage-800 dark:text-sand-200;
+}
+
+@utility section-eyebrow {
+  @apply text-xs font-semibold tracking-[0.2em] text-clay-500 uppercase dark:text-clay-300;
+}
+@utility section-title {
+  @apply font-display text-3xl font-semibold tracking-tight text-balance sm:text-4xl md:text-5xl;
+}
+@utility muted {
+  @apply text-sage-800/70 dark:text-sand-200/70;
+}
