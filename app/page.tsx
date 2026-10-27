@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { ArrowRight, CalendarCheck, HeartPulse, Leaf, MonitorPlay, Moon, Star, Sun, UserCheck, Users, Wind } from "lucide-react";
 import { PricingSection } from "@/components/PricingSection";
+import { SitePhoto } from "@/components/SitePhoto";
+import type { PhotoKey } from "@/lib/photos";
 
-const styles = [
-  { icon: Sun, title: "Sunrise Hatha", text: "Gentle, grounding postures and breathwork to start your day with clarity." },
-  { icon: Wind, title: "Vinyasa Flow", text: "Breath-linked movement that builds strength, heat and focus." },
-  { icon: Moon, title: "Yin & Nidra", text: "Long, quiet holds and guided rest to release deep tension." },
-  { icon: HeartPulse, title: "Therapeutic Yoga", text: "Back-care, posture and mobility for desk-bound bodies." },
+const styles: { icon: typeof Sun; photo: PhotoKey; title: string; text: string }[] = [
+  { icon: Sun, photo: "hatha", title: "Sunrise Hatha", text: "Gentle, grounding postures and breathwork to start your day with clarity." },
+  { icon: Wind, photo: "vinyasa", title: "Vinyasa Flow", text: "Breath-linked movement that builds strength, heat and focus." },
+  { icon: Moon, photo: "yin", title: "Yin & Nidra", text: "Long, quiet holds and guided rest to release deep tension." },
+  { icon: HeartPulse, photo: "therapy", title: "Therapeutic Yoga", text: "Back-care, posture and mobility for desk-bound bodies." },
 ];
 
 const steps = [
@@ -70,18 +72,28 @@ export default function Home() {
         </div>
 
         <div className="relative mx-auto w-full max-w-md animate-fade-up [animation-delay:150ms]">
-          <div className="glass relative aspect-[4/5] overflow-hidden rounded-[2.5rem] p-6">
-            <div className="absolute inset-0 bg-gradient-to-br from-sage-200/70 via-sand-100/40 to-clay-300/40 dark:from-sage-800/50 dark:via-sage-900/30 dark:to-clay-600/20" />
-            <svg viewBox="0 0 200 240" className="relative h-full w-full" aria-hidden>
-              <circle cx="100" cy="70" r="46" className="fill-clay-300/60 dark:fill-clay-500/30" />
-              <g className="stroke-sage-700 dark:stroke-sage-300" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" fill="none">
-                <circle cx="100" cy="62" r="11" className="fill-sage-700 dark:fill-sage-300" />
-                <path d="M100 75v48" />
-                <path d="M100 88 70 58M100 88l30-30" />
-                <path d="M100 123c-16 6-32 14-44 30h48M100 123c16 6 32 14 44 30H96" />
-              </g>
-              <path d="M30 180h140" className="stroke-sage-700/40 dark:stroke-sage-300/40" strokeWidth="4" strokeLinecap="round" />
-            </svg>
+          <div className="glass relative aspect-[4/5] overflow-hidden rounded-[2.5rem] p-6 shadow-2xl shadow-sage-900/20">
+            <SitePhoto
+              photo="hero"
+              priority
+              sizes="(min-width: 1024px) 448px, 90vw"
+              fallback={
+                <>
+                  <div className="absolute inset-0 bg-gradient-to-br from-sage-200/70 via-sand-100/40 to-clay-300/40 dark:from-sage-800/50 dark:via-sage-900/30 dark:to-clay-600/20" />
+                  <svg viewBox="0 0 200 240" className="relative h-full w-full" aria-hidden>
+                    <circle cx="100" cy="70" r="46" className="fill-clay-300/60 dark:fill-clay-500/30" />
+                    <g className="stroke-sage-700 dark:stroke-sage-300" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" fill="none">
+                      <circle cx="100" cy="62" r="11" className="fill-sage-700 dark:fill-sage-300" />
+                      <path d="M100 75v48" />
+                      <path d="M100 88 70 58M100 88l30-30" />
+                      <path d="M100 123c-16 6-32 14-44 30h48M100 123c16 6 32 14 44 30H96" />
+                    </g>
+                    <path d="M30 180h140" className="stroke-sage-700/40 dark:stroke-sage-300/40" strokeWidth="4" strokeLinecap="round" />
+                  </svg>
+                </>
+              }
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-sage-950/40 via-transparent to-transparent" />
             <div className="glass absolute bottom-6 left-6 flex items-center gap-3 rounded-2xl px-4 py-3">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
@@ -120,13 +132,22 @@ export default function Home() {
           <h2 className="section-title mt-3">A practice for every body and every mood</h2>
         </div>
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {styles.map(({ icon: Icon, title, text }) => (
-            <div key={title} className="glass group rounded-3xl p-6 transition duration-300 hover:-translate-y-1">
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-sage-600/10 text-sage-700 transition group-hover:bg-sage-600 group-hover:text-white dark:text-sage-300">
-                <Icon className="h-6 w-6" />
-              </span>
-              <h3 className="font-display mt-5 text-lg font-semibold">{title}</h3>
-              <p className="muted mt-2 text-sm leading-relaxed">{text}</p>
+          {styles.map(({ icon: Icon, photo, title, text }) => (
+            <div key={title} className="glass group overflow-hidden rounded-3xl transition duration-300 hover:-translate-y-1">
+              <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-sage-200 to-clay-300/50 dark:from-sage-800 dark:to-sage-900">
+                <SitePhoto
+                  photo={photo}
+                  sizes="(min-width: 1024px) 270px, (min-width: 640px) 45vw, 90vw"
+                  className="transition duration-700 group-hover:scale-105"
+                />
+                <span className="absolute bottom-3 left-3 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white/85 text-sage-700 shadow-lg backdrop-blur transition group-hover:bg-sage-600 group-hover:text-white dark:bg-sage-950/70 dark:text-sage-300">
+                  <Icon className="h-5 w-5" />
+                </span>
+              </div>
+              <div className="p-6 pt-5">
+                <h3 className="font-display text-lg font-semibold">{title}</h3>
+                <p className="muted mt-2 text-sm leading-relaxed">{text}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -134,22 +155,31 @@ export default function Home() {
 
       {/* How it works */}
       <section id="how" className="mx-auto max-w-6xl scroll-mt-24 px-4 py-12 sm:px-6">
-        <div className="glass rounded-[2.5rem] p-8 sm:p-12">
-          <div className="mb-12 max-w-xl">
-            <p className="section-eyebrow">How it works</p>
-            <h2 className="section-title mt-3">From sign-up to savasana in 2 minutes</h2>
+        <div className="glass grid items-center gap-10 rounded-[2.5rem] p-6 sm:p-10 lg:grid-cols-5 lg:p-12">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] bg-gradient-to-br from-sage-200 to-sand-300 lg:col-span-2 dark:from-sage-800 dark:to-sage-900">
+            <SitePhoto photo="home" sizes="(min-width: 1024px) 400px, 90vw" />
+            <div className="glass absolute right-4 bottom-4 left-4 rounded-2xl px-4 py-3 text-sm">
+              <p className="font-semibold">Your living room, your studio</p>
+              <p className="muted text-xs">Just a mat, a device and a little space.</p>
+            </div>
           </div>
-          <div className="grid gap-8 md:grid-cols-3">
-            {steps.map(({ icon: Icon, title, text }, i) => (
-              <div key={title} className="relative">
-                <span className="font-display text-6xl font-semibold text-sage-600/15 dark:text-white/10">0{i + 1}</span>
-                <div className="mt-2 flex items-center gap-3">
-                  <Icon className="h-5 w-5 text-clay-500" />
-                  <h3 className="font-display text-lg font-semibold">{title}</h3>
+          <div className="lg:col-span-3">
+            <div className="mb-10 max-w-xl">
+              <p className="section-eyebrow">How it works</p>
+              <h2 className="section-title mt-3">From sign-up to savasana in 2 minutes</h2>
+            </div>
+            <div className="grid gap-8 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+              {steps.map(({ icon: Icon, title, text }, i) => (
+                <div key={title} className="relative">
+                  <span className="font-display text-6xl font-semibold text-sage-600/15 dark:text-white/10">0{i + 1}</span>
+                  <div className="mt-2 flex items-center gap-3">
+                    <Icon className="h-5 w-5 text-clay-500" />
+                    <h3 className="font-display text-lg font-semibold">{title}</h3>
+                  </div>
+                  <p className="muted mt-2 text-sm leading-relaxed">{text}</p>
                 </div>
-                <p className="muted mt-2 text-sm leading-relaxed">{text}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -201,7 +231,9 @@ export default function Home() {
 
       {/* CTA */}
       <section className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="relative overflow-hidden rounded-[2.5rem] bg-sage-700 px-6 py-16 text-center text-sand-50 sm:px-12 dark:bg-sage-800">
+        <div className="relative overflow-hidden rounded-[2.5rem] bg-sage-700 px-6 py-20 text-center text-sand-50 sm:px-12 dark:bg-sage-800">
+          <SitePhoto photo="calm" sizes="(min-width: 1152px) 1152px, 100vw" className="opacity-75" />
+          <div className="absolute inset-0 bg-gradient-to-b from-sage-950/55 via-sage-900/40 to-sage-950/70" />
           <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-clay-400/30 blur-3xl" />
           <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-sage-400/30 blur-3xl" />
           <Users className="relative mx-auto h-10 w-10 text-sage-200" />

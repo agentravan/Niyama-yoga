@@ -28,7 +28,13 @@ export function Footer() {
           </ul>
         </div>
       </div>
-      <p className="muted mx-auto mt-10 max-w-6xl text-xs">© {new Date().getFullYear()} Niyama Yoga. All rights reserved.</p>
+      <div className="muted mx-auto mt-10 flex max-w-6xl flex-col gap-1 text-xs sm:flex-row sm:justify-between">
+        <p>© {new Date().getFullYear()} Niyama Yoga. All rights reserved.</p>
+        <p>
+          Photos: <a href="https://stocksnap.io" className="hover:underline">StockSnap</a> &amp;{" "}
+          <a href="https://www.rawpixel.com/public-domain" className="hover:underline">rawpixel</a> (CC0)
+        </p>
+      </div>
     </footer>
   );
 }

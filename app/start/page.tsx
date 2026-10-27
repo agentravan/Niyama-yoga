@@ -5,6 +5,8 @@ import { getProfile, getUser } from "@/lib/auth";
 import { supabaseConfigured } from "@/lib/config";
 import { isPlanId } from "@/lib/plans";
 import { SetupNotice } from "@/components/SetupNotice";
+import { SitePhoto } from "@/components/SitePhoto";
+import { getPhoto } from "@/lib/photos";
 import { StartForm } from "./StartForm";
 
 export const metadata: Metadata = { title: "Start your free trial" };
@@ -37,6 +39,11 @@ export default async function StartPage({ searchParams }: { searchParams: Promis
         <p className="muted mt-8 flex items-center gap-2 text-sm">
           <ShieldCheck className="h-4 w-4" /> Your details are private and never shared.
         </p>
+        {getPhoto("meditate") && (
+          <div className="relative mt-8 hidden aspect-[3/2] overflow-hidden rounded-[2rem] shadow-xl shadow-sage-900/10 lg:block">
+            <SitePhoto photo="meditate" sizes="400px" />
+          </div>
+        )}
       </div>
       <div className="glass rounded-[2rem] p-6 sm:p-8 lg:col-span-3">
         {supabaseConfigured ? <StartForm initialPlan={initialPlan} signedInEmail={user?.email} /> : <SetupNotice />}

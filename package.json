@@ -4,7 +4,9 @@
   "private": true,
   "description": "Niyama Yoga — online live yoga platform with free trials, memberships, admin portal and in-browser live classes.",
   "scripts": {
+    "predev": "node scripts/fetch-images.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/fetch-images.mjs",
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",

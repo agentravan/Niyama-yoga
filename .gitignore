@@ -11,3 +11,6 @@ next-env.d.ts
 !.env.local.example
 .DS_Store
 npm-debug.log*
+
+# Downloaded at build time by scripts/fetch-images.mjs
+public/images/

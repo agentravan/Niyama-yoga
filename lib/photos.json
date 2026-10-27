@@ -1,0 +1,50 @@
+{
+  "hero": {
+    "file": "hero.jpg",
+    "url": "https://cdn.stocksnap.io/img-thumbs/960w/PDCKFINKM5.jpg",
+    "alt": "Woman practising a backbend on the beach at sunrise",
+    "source": "https://stocksnap.io/photo/yoga-pose-PDCKFINKM5"
+  },
+  "home": {
+    "file": "home.jpg",
+    "url": "https://cdn.stocksnap.io/img-thumbs/960w/NK0FIGBQJM.jpg",
+    "alt": "Two women practising yoga on mats at home",
+    "source": "https://stocksnap.io/photo/woman-yoga-NK0FIGBQJM"
+  },
+  "hatha": {
+    "file": "hatha.jpg",
+    "url": "https://cdn.stocksnap.io/img-thumbs/960w/D8SW90PLFX.jpg",
+    "alt": "Silhouette of a woman in tree pose at dawn",
+    "source": "https://stocksnap.io/photo/taichee-yoga-D8SW90PLFX"
+  },
+  "vinyasa": {
+    "file": "vinyasa.jpg",
+    "url": "https://cdn.stocksnap.io/img-thumbs/960w/P4K7E7G61E.jpg",
+    "alt": "Woman holding a balancing pose by the sea",
+    "source": "https://stocksnap.io/photo/yoga-fitness-P4K7E7G61E"
+  },
+  "yin": {
+    "file": "yin.jpg",
+    "url": "https://cdn.stocksnap.io/img-thumbs/960w/95YK8D86CY.jpg",
+    "alt": "Woman resting in child's pose on a pink mat",
+    "source": "https://stocksnap.io/photo/people-woman-95YK8D86CY"
+  },
+  "therapy": {
+    "file": "therapy.webp",
+    "url": "https://images.rawpixel.com/editor_1024/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvYnMxOTgtaW1hZ2Uta3d2eW5mMjQuanBn.jpg",
+    "alt": "Woman doing a gentle seated stretch",
+    "source": "https://www.rawpixel.com/image/5928390"
+  },
+  "meditate": {
+    "file": "meditate.jpg",
+    "url": "https://cdn.stocksnap.io/img-thumbs/960w/AYWO7QN7K7.jpg",
+    "alt": "Woman meditating cross-legged in a bright room",
+    "source": "https://stocksnap.io/photo/people-woman-AYWO7QN7K7"
+  },
+  "calm": {
+    "file": "calm.webp",
+    "url": "https://images.rawpixel.com/editor_1024/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3B4MTE3NTcxMy1pbWFnZS1rd3Z3NzlkNy5qcGc.jpg",
+    "alt": "Silhouette of a person meditating outdoors in golden light",
+    "source": "https://www.rawpixel.com/image/5912948"
+  }
+}
